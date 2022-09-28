@@ -9,12 +9,9 @@ function getPlayerSelection() {
     return inputNum.toLowerCase();
 }
 
-let computerChoice = getComputerChoice();
-let playerSelection = getPlayerSelection();
-
 function playRound(computerChoice, playerSelection) {
     if (computerChoice === playerSelection) {
-        return "It's a tie. You both chose " + computerChoice;
+        return "It's a tie. You both chose " + computerChoice + '.';
 
     } else if (computerChoice==='rock' && playerSelection==='paper') {
         return "You won. " + playerSelection + " beats the " + computerChoice + '.';
@@ -34,4 +31,28 @@ function playRound(computerChoice, playerSelection) {
 }
 }
 
-console.log(playRound(computerChoice, playerSelection));
+
+function game() {
+    let computerScore = 0;
+    let playerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+        let oneResult = playRound(getComputerChoice(), getPlayerSelection());
+        console.log(oneResult)
+        if (oneResult.includes('won')) {
+            playerScore ++;
+        } else if (oneResult.includes('lose')) {
+            computerScore ++;
+        }
+        
+    }
+
+    if (computerScore>playerScore) {
+        return 'You lose. Computer scored ' + computerScore + ', while you only got ' + playerScore + '.';
+    } else {
+        return 'You win. You scored ' + playerScore + ', while Computer only got ' + computerScore + '.';
+    }
+}
+
+
+console.log(game());

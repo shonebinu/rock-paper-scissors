@@ -1,0 +1,105 @@
+body {
+    background: #0d1321;
+    color: white;
+}
+
+header {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#headings {
+    display: flex;
+    width: 35%;
+    justify-content: space-around;
+    font-size: 1.5rem;
+    font-family: 'Inter';
+    font-weight: bold;
+}
+
+#headings > h1 {
+    margin-bottom: 1.5%;
+}
+
+#quote {
+    margin-top: 0;
+    font-family: 'Roboto';
+    font-weight: bold;
+    display: flex;
+}
+
+#quote > p {
+    padding: 0 15px;
+    font-size: 1.1rem;
+    color: #F0EBD8;
+}
+
+main {
+    margin-top: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+img {
+    height: 200px;
+}
+
+#options {
+    display: flex;
+    justify-content: center;
+}
+
+.selections {
+    padding: 0 8% 0 12%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#prock, #ppaper, #pscissor {
+    font-family: 'Macondo';
+    font-size: 2.5rem;
+    margin-top: 3%;
+}
+
+#prock {
+    color: #FE2BF1;
+}
+
+#ppaper {
+    color: #00dfba;
+}
+
+#pscissor {
+    color: #0c7ceb;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Macondo';
+}
+
+#liveresult {
+    width: 20%;
+    display: flex;
+    justify-content: space-between;
+}
+
+#liveresult > p {
+    font-size: 3rem;
+    color: #F0EBD8;
+}
+
+#instaresult {
+    font-size: 2rem;
+    padding-top: 1%;
+}
+
+#round {
+    font-size: 2rem;
+}

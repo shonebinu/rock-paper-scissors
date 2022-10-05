@@ -97,7 +97,7 @@ footer {
 
 #liveresult > p {
     font-size: 3rem;
-    color: #F0EBD8;
+    color: #e29578;
     margin-top: 1%;
 }
 
@@ -105,7 +105,7 @@ footer {
     font-size: 2rem;
     padding-top: 1%;
     font-family: 'Macondo';
-    color: #F0EBD8;
+    color: #f6bd60;
 }
 
 #round {
@@ -126,4 +126,29 @@ footer {
 
 a:link {
     color: red;
+}
+
+#last {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    font-family: "Inter";
+}
+
+button {
+    transition: 50ms;
+    font-family: "Macondo";
+    padding: 8px 10px;
+    border: 1px solid #3E5C76;
+    border-radius: 7px;
+    background-color: #a8dadc;
+}
+
+button:hover {
+    transform: scale(1.1);
 }

@@ -11,7 +11,7 @@ const liveyou = document.querySelector('#liveyou')
 liveyou.textContent = `You: ${myLife}`;
 
 const liverival = document.querySelector('#liverival');
-liverival.textContent = `Rival ${rivalLife}`;
+liverival.textContent = `Enemy: ${rivalLife}`;
 
 const messa = document.querySelector('#instaresult');
 messa.textContent = message;
@@ -65,6 +65,16 @@ scoring = (array) => {
     rivalLife = rivalLife - array[1];
 }
 
+const body = document.querySelector('body');
+
+playerLose = () => {
+    body.innerHTML = "<div id='last'><h2>It seems like you've lost this game. But don't worry, we can play again!</h2><button onclick='location.reload()'>Play again!</button></div>";
+}
+
+playerWin = () => {
+    body.innerHTML = "<div id='last'><h2>Hurray, you won the game. Wanna try again?</h2><button onclick='location.reload()'>Play again!</button></div>";
+}
+
 selections.forEach((selection) => {
     selection.addEventListener('click', () => {
         let playerSelection = selection.id;
@@ -72,8 +82,11 @@ selections.forEach((selection) => {
         round++;
         roundp.textContent = `Round: ${round}`;
         liveyou.textContent = `You: ${myLife}`;
-        liverival.textContent = `Rival ${rivalLife}`;
+        liverival.textContent = `Enemy: ${rivalLife}`;
         messa.textContent = message;
+
+        if (myLife ===  0) playerLose();
+        else if (rivalLife === 0) playerWin();
     });
 });
 

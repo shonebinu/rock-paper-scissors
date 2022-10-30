@@ -1,2 +1,2 @@
 # Rock Paper Scissor
-[Live](https://shonebinu.github.io/rock-paper-scissors/)
+[Live Demo of Rock Paper Scissor's](https://shonebinu.github.io/rock-paper-scissors/)

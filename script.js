@@ -15,7 +15,7 @@ function getPlayerSelection() {
   const playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
   if (!Object.values(Hands).includes(playerSelection)) {
     console.warn("Hey hey, wrong input, reload the page and enter the correct input.");
-    return "";
+    return 0;
   } else {
     return playerSelection;
   }
@@ -26,8 +26,13 @@ function capitalizeFirstLetter(inputString) {
 }
 
 function playRound(playerSelection, computerSelection) {
+  if (!playerSelection) {
+    return 0;
+  } 
+  
   if (playerSelection === computerSelection) {
     console.log("Its a tie");
+    playRound(getPlayerSelection(), getComputerChoice());
   } 
 
   else if (
@@ -43,10 +48,4 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const playerSelection = getPlayerSelection();
-const computerSelection = getComputerChoice();
-
-if (playerSelection && computerSelection) {
-  playRound(playerSelection, computerSelection);
-}
-
+playRound(getPlayerSelection(), getComputerChoice());

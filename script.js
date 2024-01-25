@@ -7,7 +7,7 @@ const Hands = {
 };
 
 function getComputerChoice() {
-  let randomValue = Math.floor((Math.random() * 3) + 1);
+  let randomValue = Math.floor((Math.random() * 3) + 1); // get a random number between 1 and 3
   return Hands[randomValue];
 }
 

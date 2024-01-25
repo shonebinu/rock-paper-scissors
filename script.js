@@ -14,9 +14,10 @@ function getComputerChoice() {
 function getPlayerSelection() {
   const playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
   if (!Object.values(Hands).includes(playerSelection)) {
-    console.warn("Hey hey, wrong input, reload the page and enter the correct input.");
+    console.warn("Hey hey, wrong input.");
     return 0;
-  } else {
+  } 
+  else {
     return playerSelection;
   }
 }
@@ -26,26 +27,62 @@ function capitalizeFirstLetter(inputString) {
 }
 
 function playRound(playerSelection, computerSelection) {
-  if (!playerSelection) {
-    return 0;
-  } 
+  if (playerSelection) {
   
-  if (playerSelection === computerSelection) {
-    console.log("Its a tie");
-    playRound(getPlayerSelection(), getComputerChoice());
-  } 
+    if (playerSelection === computerSelection) {
+      console.log("Its a tie");
+      return 0;
+    } 
 
-  else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
-  ) {
-    console.log(`You win! ${capitalizeFirstLetter(playerSelection)} beats ${capitalizeFirstLetter(computerSelection)}`);
-  } 
-  
-  else {
-    console.log(`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}`);
+    else if (
+      (playerSelection === "rock" && computerSelection === "scissors") ||
+      (playerSelection === "paper" && computerSelection === "rock") ||
+      (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+      console.log(`You win! ${capitalizeFirstLetter(playerSelection)} beats ${capitalizeFirstLetter(computerSelection)}`);
+      return 1;
+    } 
+    
+    else {
+      console.log(`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}`);
+      return 2;
+    }
+
   }
 }
 
-playRound(getPlayerSelection(), getComputerChoice());
+function game() {
+  let playerScore = 0;
+  let computerScore = 0;
+
+  for (let i = 0; i < 5;) {
+    let playerSelection = getPlayerSelection(); 
+    let computerChoice = getComputerChoice();
+    let playResult = playRound(playerSelection, computerChoice);
+
+    if (playerSelection) { // only increment the counter if the user entered input correctly
+      i++;
+    }
+
+    if (playResult === 1) {
+      playerScore++;
+    }
+    else if (playResult === 2) {
+      computerScore++;
+    }
+  }
+
+  console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
+
+  if (playerScore === computerScore) {
+    console.log("It's a tie");
+  }
+  else if (playerScore < computerScore) {
+    console.log("You lose, I'm sorry you loser");
+  }
+  else if (playerScore > computerScore) {
+    console.log("You won, Heck yeah!");
+  }
+}
+
+game();

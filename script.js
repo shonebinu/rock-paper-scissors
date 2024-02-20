@@ -11,18 +11,17 @@ let playerWin = 0, computerWin = 0;
 const rockButton = document.querySelector("#rock");
 const paperButton = document.querySelector("#paper");
 const scissorButton = document.querySelector("#scissor");
-const resultDiv = document.querySelector("#result");
 
 rockButton.addEventListener("click", () => {
-  playRound("rock", getComputerChoice());  
+  playRound("rock", getComputerChoice());
 });
 
 paperButton.addEventListener("click", () => {
-    playRound("paper", getComputerChoice());  
+  playRound("paper", getComputerChoice());
 });
 
 scissorButton.addEventListener("click", () => {
-    playRound("scissor", getComputerChoice());  
+  playRound("scissor", getComputerChoice());
 });
 
 function getComputerChoice() {
@@ -34,7 +33,14 @@ function capitalizeFirstLetter(inputString) {
   return inputString.charAt(0).toUpperCase() + inputString.slice(1);
 }
 
+function updateScoreBoard(userScore, computerScore) {
+  const scoreBoard = document.querySelector("#scoreboard");
+  scoreBoard.textContent = `You: ${userScore}, Computer: ${computerScore}`;
+}
+
 function playRound(playerSelection, computerSelection) {
+  const resultDiv = document.querySelector("#result");
+
   if (playerSelection === computerSelection) {
     resultDiv.textContent = "Its a tie";
   } 
@@ -52,4 +58,6 @@ function playRound(playerSelection, computerSelection) {
     resultDiv.textContent = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}`;
     computerWin++;
   }
+
+  updateScoreBoard(playerWin, computerWin);
 }

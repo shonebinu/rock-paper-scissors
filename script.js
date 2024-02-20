@@ -3,23 +3,12 @@
 const Hands = {
   1: "rock",
   2: "paper",
-  3: "scissors"
+  3: "scissor"
 };
 
 function getComputerChoice() {
   let randomValue = Math.floor((Math.random() * 3) + 1); // get a random number between 1 and 3
   return Hands[randomValue];
-}
-
-function getPlayerSelection() {
-  const playerSelection = prompt("Rock, Paper or Scissors?").toLowerCase();
-  if (!Object.values(Hands).includes(playerSelection)) {
-    console.warn("Hey hey, wrong input.");
-    return 0;
-  } 
-  else {
-    return playerSelection;
-  }
 }
 
 function capitalizeFirstLetter(inputString) {
@@ -31,58 +20,35 @@ function playRound(playerSelection, computerSelection) {
   
     if (playerSelection === computerSelection) {
       console.log("Its a tie");
-      return 0;
     } 
 
     else if (
-      (playerSelection === "rock" && computerSelection === "scissors") ||
+      (playerSelection === "rock" && computerSelection === "scissor") ||
       (playerSelection === "paper" && computerSelection === "rock") ||
-      (playerSelection === "scissors" && computerSelection === "paper")
+      (playerSelection === "scissor" && computerSelection === "paper")
     ) {
       console.log(`You win! ${capitalizeFirstLetter(playerSelection)} beats ${capitalizeFirstLetter(computerSelection)}`);
-      return 1;
     } 
     
     else {
       console.log(`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}`);
-      return 2;
     }
 
   }
 }
 
-function game() {
-  let playerScore = 0;
-  let computerScore = 0;
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorButton = document.querySelector("#scissor");
 
-  for (let i = 0; i < 5;) {
-    let playerSelection = getPlayerSelection(); 
-    let computerChoice = getComputerChoice();
-    let playResult = playRound(playerSelection, computerChoice);
+rockButton.addEventListener("click", () => {
+  playRound("rock", getComputerChoice());  
+});
 
-    if (playerSelection) { // only increment the counter if the user entered input correctly
-      i++;
-    }
+paperButton.addEventListener("click", () => {
+    playRound("paper", getComputerChoice());  
+});
 
-    if (playResult === 1) {
-      playerScore++;
-    }
-    else if (playResult === 2) {
-      computerScore++;
-    }
-  }
-
-  console.log(`Your score: ${playerScore}\nComputer score: ${computerScore}`);
-
-  if (playerScore === computerScore) {
-    console.log("It's a tie");
-  }
-  else if (playerScore < computerScore) {
-    console.log("You lose, I'm sorry you loser");
-  }
-  else if (playerScore > computerScore) {
-    console.log("You won, Heck yeah!");
-  }
-}
-
-game();
+scissorButton.addEventListener("click", () => {
+    playRound("scissor", getComputerChoice());  
+});

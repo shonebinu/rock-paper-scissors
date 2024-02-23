@@ -11,6 +11,7 @@ let playerWin = 0, computerWin = 0;
 const rockButton = document.querySelector("#rock");
 const paperButton = document.querySelector("#paper");
 const scissorButton = document.querySelector("#scissor");
+const restartButton = document.querySelector("#restart");
 
 rockButton.addEventListener("click", () => {
   playRound("rock", getComputerChoice());
@@ -22,6 +23,11 @@ paperButton.addEventListener("click", () => {
 
 scissorButton.addEventListener("click", () => {
   playRound("scissor", getComputerChoice());
+});
+
+restartButton.addEventListener("click", () => {
+  playerWin = computerWin = 0;
+  updateScoreBoard(playerWin, computerWin);
 });
 
 function getComputerChoice() {
@@ -39,7 +45,11 @@ function updateScoreBoard(userScore, computerScore) {
 }
 
 function playRound(playerSelection, computerSelection) {
+  if (playerWin === 5 || computerWin === 5) 
+    return;
+  
   const resultDiv = document.querySelector("#result");
+  const finalResultDiv = document.querySelector("#finalResult");
 
   if (playerSelection === computerSelection) {
     resultDiv.textContent = "Its a tie";
@@ -60,4 +70,11 @@ function playRound(playerSelection, computerSelection) {
   }
 
   updateScoreBoard(playerWin, computerWin);
+
+  if (playerWin === 5) {
+    finalResultDiv.textContent = "You won!";
+  }
+  else if (computerWin === 5) {
+    finalResultDiv.textContent = "You lose!";
+  }
 }

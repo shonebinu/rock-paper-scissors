@@ -11,7 +11,8 @@ let playerWin = 0, computerWin = 0;
 const rockButton = document.querySelector("#rock");
 const paperButton = document.querySelector("#paper");
 const scissorButton = document.querySelector("#scissor");
-const restartButton = document.querySelector("#restart");
+
+updateScoreBoard(playerWin, computerWin);
 
 rockButton.addEventListener("click", () => {
   playRound("rock", getComputerChoice());
@@ -25,10 +26,6 @@ scissorButton.addEventListener("click", () => {
   playRound("scissor", getComputerChoice());
 });
 
-restartButton.addEventListener("click", () => {
-  playerWin = computerWin = 0;
-  updateScoreBoard(playerWin, computerWin);
-});
 
 function getComputerChoice() {
   let randomValue = Math.floor((Math.random() * 3) + 1); // get a random number between 1 and 3
@@ -48,11 +45,12 @@ function playRound(playerSelection, computerSelection) {
   if (playerWin === 5 || computerWin === 5) 
     return;
   
-  const resultDiv = document.querySelector("#result");
-  const finalResultDiv = document.querySelector("#finalResult");
+  const resultH3 = document.querySelector("#resultH3");
+  const resultP = document.querySelector("#resultP");
 
   if (playerSelection === computerSelection) {
-    resultDiv.textContent = "Its a tie";
+    resultH3.textContent = "Tie";
+    resultP.textContent = "Both chose the same";
   } 
 
   else if (
@@ -60,21 +58,39 @@ function playRound(playerSelection, computerSelection) {
     (playerSelection === "paper" && computerSelection === "rock") ||
     (playerSelection === "scissor" && computerSelection === "paper")
   ) {
-    resultDiv.textContent = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${capitalizeFirstLetter(computerSelection)}`;
+    resultH3.textContent = "You WIN";
+    resultP.textContent = `${capitalizeFirstLetter(playerSelection)} beats ${capitalizeFirstLetter(computerSelection)}`;
     playerWin++;
   } 
  
   else {
-    resultDiv.textContent = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}`;
+    resultH3.textContent = "You LOSE";
+    resultP.textContent = `${capitalizeFirstLetter(computerSelection)} beats ${capitalizeFirstLetter(playerSelection)}`;
     computerWin++;
   }
 
   updateScoreBoard(playerWin, computerWin);
 
+  if (playerWin === 5 || computerWin === 5) {
+   updateResultDialog(playerWin, computerWin); 
+  }
+}
+
+function updateResultDialog(playerWin, computerWin) {
+  const dialog = document.querySelector("#finalResult");
+  const finalResultP = document.querySelector("#finalResultP");
+  const restartButton = document.querySelector("#restart");
+
   if (playerWin === 5) {
-    finalResultDiv.textContent = "You won!";
+    finalResultP.textContent = "You won the game";
   }
   else if (computerWin === 5) {
-    finalResultDiv.textContent = "You lose!";
+    finalResultP.textContent = "You lose the game";
   }
+  
+  dialog.showModal();
+
+  restartButton.addEventListener("click", () => {
+    location.reload();
+  });
 }

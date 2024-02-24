@@ -5,22 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Rock Paper Scissors</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Silkscreen:wght@400;700&display=swap')
+  </style>
   <link rel="stylesheet" href="style.css">
-  <script src="script.js" defer>
-  </script>
+  <script src="script.js" defer></script>
 </head>
 
 <body>
-  <h1>Rock Paper Scissor's</h1>
-  <main>
-    <button id="rock">Rock</button>
-    <button id="paper">Paper</button>
-    <button id="scissor">Scissor</button>
-  </main>
-  <div id="result"></div>
+  <h1>Rock Paper Scissors</h1>
   <div id="scoreboard"></div>
-  <div id="finalResult"></div>
-  <button id="restart">Restart</button>
+  <main>
+    <button id="rock" class="hands">✊</button>
+    <button id="paper" class="hands">✌️</button>
+    <button id="scissor" class="hands">✋</button>
+  </main>
+  <div id="result">
+    <h3 id="resultH3"></h3>
+    <p id="resultP"></p>
+  </div>
+  <dialog id="finalResult">
+    <p id="finalResultP"></p>
+    <button id="restart">Restart</button>
+  </dialog>
 </body>
 
 </html>

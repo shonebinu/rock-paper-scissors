@@ -85,7 +85,7 @@ function updateResultDialog(playerWin, computerWin) {
     finalResultP.textContent = "You won the game";
   }
   else if (computerWin === 5) {
-    finalResultP.textContent = "You lose the game";
+    finalResultP.textContent = "You lost the game";
   }
   
   dialog.showModal();
